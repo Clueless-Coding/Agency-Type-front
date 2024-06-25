@@ -1,6 +1,8 @@
 import Text from "../text/Text"
 import Timer from "../timer/timer"
 import useLogic from "../../hooks/useLogic"
+import ModalComponent from "../modal/modal"
+import ModalContent from "../modal/modalContent"
 const Content = () => {
     const {
         checkCharacter,
@@ -10,6 +12,10 @@ const Content = () => {
         restartTest,
         timer,
         resetTimer,
+        modalIsOpen,
+        openModal,
+        closeModal,
+        results,
     } = useLogic()
 
     return (
@@ -21,6 +27,9 @@ const Content = () => {
                     check={checkCharacter}
                     cursorPosition={cursorPosition}
                 />
+                <ModalComponent type='results' isOpen={modalIsOpen}>
+                    <ModalContent results={results}/>
+                </ModalComponent>
             </div>
             
         </>

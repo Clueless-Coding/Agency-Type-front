@@ -2,6 +2,7 @@ import { useState, useCallback } from "react"
 import useWord from "./useWord";
 import useKeyDown from "./useKeydown"
 import useTimer from "./useTimer";
+import { useModal } from "./useModal";
 import { accuracy, calculateWPM } from "../utils";
 const useLogic = () => {
     interface Results {
@@ -10,7 +11,7 @@ const useLogic = () => {
         cpm: number;
     }
     const [wordFocused, setWordFocused] = useState<boolean>(true)
-    const [time, setTime] = useState(15000)
+    const [time, setTime] = useState(1500)
     const {timer, resetTimer, startTimer} = useTimer(time)
     const [results, setResults] = useState<Results>({
         accuracy: 0,
@@ -45,8 +46,12 @@ const useLogic = () => {
         resetCursorPosition,
         setTypingState,
         updateWord
-        
     ])
+    const {
+        modalIsOpen,
+        openModal,
+        closeModal,
+    } = useModal()
     if(word.length === charTyped.length){
         updateWord();
         resetCharTyped();
@@ -81,7 +86,10 @@ const useLogic = () => {
         word,
         cursorPosition,
         restartTest,
-
+        modalIsOpen,
+        closeModal,
+        openModal,
+        results,
     }
 }
 export default useLogic
