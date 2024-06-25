@@ -1,0 +1,16 @@
+.cursor {
+    color: white; 
+    transition: transform 0.1s ease-in-out; 
+}
+.character{
+    width: 30px;
+    margin: 3px;
+}
+.user-typed-container{
+    width: 600px;
+    height: 300px;
+}
+.holder{
+    width: 30px;
+    display: inline;
+}
