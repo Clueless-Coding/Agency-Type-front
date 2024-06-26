@@ -4,19 +4,24 @@ import useKeyDown from "./useKeydown"
 import useTimer from "./useTimer";
 import { useModal } from "./useModal";
 import { accuracy, calculateWPM } from "../utils";
+import useAxios from "./useAxios";
 const useLogic = () => {
     interface Results {
         accuracy: number;
         wpm: number;
         cpm: number;
+        error: number,
+        history: number;
     }
     const [wordFocused, setWordFocused] = useState<boolean>(true)
-    const [time, setTime] = useState(1500)
+    const [time, setTime] = useState(10000)
     const {timer, resetTimer, startTimer} = useTimer(time)
     const [results, setResults] = useState<Results>({
         accuracy: 0,
         wpm: 0,
         cpm: 0,
+        error: 0,
+        history: 0,
     })
     const {
         charTyped,
@@ -32,7 +37,7 @@ const useLogic = () => {
         updateWord,
         setTotalWord,
         totalWord,
-    } = useWord(30)
+    } = useWord(1)
     const restartTest = useCallback(() => {
         resetTimer();
         resetCharTyped();
@@ -68,7 +73,11 @@ const useLogic = () => {
             accuracy: 0,
             wpm,
             cpm,
+            error: 0,
+            history: 0,
         })
+        openModal('results');
+        restartTest();
     }   
     const checkCharacter = useCallback((i: number) => {
         if(charTyped[i] === word[i]){

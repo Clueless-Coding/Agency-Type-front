@@ -1,9 +1,11 @@
-import { ResultsProps } from "./resultsTypes";
+import { ResultCardProps } from "./resultsTypes";
 
-const ResultCard = ({results}: ResultsProps) => {
+const ResultCard = ({results}: ResultCardProps) => {
     return (
         <>
-            {results}
+            {results.cpm}
+            <br />
+            {results.wpm}
         </>
     )
 }

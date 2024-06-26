@@ -17,7 +17,6 @@ const Content = () => {
         closeModal,
         results,
     } = useLogic()
-
     return (
         <>
             <div className="content">
@@ -27,8 +26,8 @@ const Content = () => {
                     check={checkCharacter}
                     cursorPosition={cursorPosition}
                 />
-                <ModalComponent type='results' isOpen={modalIsOpen}>
-                    <ModalContent results={results}/>
+                <ModalComponent type='results' isOpen={modalIsOpen} closeModal={closeModal} >
+                    <ModalContent results={results} history=""  />
                 </ModalComponent>
             </div>
             

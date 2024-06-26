@@ -1,4 +1,10 @@
 export interface ResultsProps {
-    results: string;
-    
+    wpm: number;
+    cpm: number;
+    accuracy: number;
+    error: number;
+    history: number,
+}
+export interface ResultCardProps {
+    results: ResultsProps;
 }
