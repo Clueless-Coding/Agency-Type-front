@@ -4,10 +4,10 @@ const Nav = () => {
         <>
             <div className="nav">
                 ТЫ ДОЛБАЕБ
+                <Link to="/test"> test</Link>
+                <Link to="/profile">profile</Link>
             </div>
-            <Link to="/test"> test</Link>
-            <Link to="/profile">profile</Link>
-            <Link to="/login">login</Link>
+            
         </>
     )
 }

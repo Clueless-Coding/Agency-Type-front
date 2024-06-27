@@ -16,7 +16,7 @@ const useKeyDown = (active: boolean) => {
                 }
                 return;
               }
-        
+            
               if (typingState === 'idle') {
                 setTypingState('start');
               }

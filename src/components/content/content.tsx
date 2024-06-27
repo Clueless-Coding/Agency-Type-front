@@ -3,6 +3,8 @@ import Timer from "../timer/timer"
 import useLogic from "../../hooks/useLogic"
 import ModalComponent from "../modal/modal"
 import ModalContent from "../modal/modalContent"
+import useAxios from "../../hooks/useAxios"
+import { LoginCredentials, Results, User } from "../../resourses/types"
 const Content = () => {
     const {
         checkCharacter,
@@ -16,10 +18,14 @@ const Content = () => {
         openModal,
         closeModal,
         results,
+        setWordFocused,
+        wordFocused,
+        setTypingState,
+
     } = useLogic()
     return (
         <>
-            <div className="content">
+            <div className="content" onClick={() => setWordFocused(true)}>
                 <Timer timer={timer} reset={resetTimer}/>
                 <Text
                     text={word}
@@ -29,8 +35,8 @@ const Content = () => {
                 <ModalComponent type='results' isOpen={modalIsOpen} closeModal={closeModal} >
                     <ModalContent results={results} history=""  />
                 </ModalComponent>
+                <button onClick={() => restartTest()}>Restart</button>
             </div>
-            
         </>
     )
 }

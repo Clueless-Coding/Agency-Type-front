@@ -2,6 +2,8 @@ import { LoginCredentials, ApiResponse, ErrorType, User } from "../../resourses/
 export interface LoginProps{
     error: ErrorType | null,
     loading: boolean,
-    login:  (credentials: LoginCredentials) => Promise<ApiResponse>,
+    
+    loginCall:  (credentials: LoginCredentials) => Promise<ApiResponse>,
+    logout:  () => void,
     auth: (userData: User) => void,
 }

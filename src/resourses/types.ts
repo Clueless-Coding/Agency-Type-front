@@ -1,8 +1,3 @@
-export type UserData = {
-    username: string,
-    password: string,
-    email?: string,
-}
 export type ApiResponse = {
     data: any,
     message: string,
@@ -12,14 +7,21 @@ export type ErrorType = {
     message: string,
 }
 export type LoginCredentials = {
-    username: string,
+    login: string,
     password: string,
 }
 export type RegistraTionCredentials = {
-    username: string,
+    login: string,
     password: string,
 }
 export type User = {
     id: number,
     username: string,
+}
+export type Results= {
+    accuracy: number;
+    wpm: number;
+    cpm: number;
+    error: number,
+    history: number;
 }

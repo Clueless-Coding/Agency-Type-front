@@ -1,15 +1,21 @@
 import { useState } from "react"
 import { LoginProps } from "./loginTypes"
-const Login: React.FC<LoginProps> = ({loading, error, login, auth}: LoginProps) => {
-    const [username, setusername] = useState<string>('')
+import useAuth from "../../hooks/useAuth"
+import { Navigate } from "react-router-dom"
+import { LoginCredentials } from "../../resourses/types"
+const Login: React.FC<LoginProps> = ({loading, error, loginCall, logout}: LoginProps) => {
+    const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const {auth} = useAuth()
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+        e.preventDefault()
         try{
-            const credentials = {username, password}
-            const response = await login(credentials)
+            const credentials: LoginCredentials = {login, password}
+            const response = await loginCall(credentials)
+            //auth(response)
+            console.log(response.data)
             console.log('Login succesful:', response)
-            auth(response.data)
+            //auth(response.data)
         } catch (error) {
             console.error('Login failed:', error)
         }
@@ -19,8 +25,8 @@ const Login: React.FC<LoginProps> = ({loading, error, login, auth}: LoginProps) 
         <form onSubmit={handleSubmit}>
             <input
                 type="username"
-                value={username}
-                onChange={(input) => setusername(input.target.value)}
+                value={login}
+                onChange={(input) => setLogin(input.target.value)}
                 placeholder='username'
                 required
             />
@@ -31,10 +37,11 @@ const Login: React.FC<LoginProps> = ({loading, error, login, auth}: LoginProps) 
                 placeholder='password'
                 required
             />
-        </form>
-        <button type="submit" disabled={loading}>
+            <button type="submit" disabled={loading} >
             Login
-        </button>
+            </button>   
+        </form>
+        <button onClick={() => logout()}>logout</button>
         {error && <p>{error.message}</p>}
         </>
     )

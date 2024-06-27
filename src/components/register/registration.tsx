@@ -1,15 +1,15 @@
+import { RegistraTionCredentials } from "../../resourses/types";
 import { RegistrationProps } from "./registrationTypes";
 import { useState } from "react";
 const Registration: React.FC<RegistrationProps> = ({loading, error, registration}: RegistrationProps) => {
-    const [username, setUsername] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
+    const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
   
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       try {
-        const userData = { username, email, password };
-        const response = await registration(userData);
+        const credentials: RegistraTionCredentials = { login,  password };
+        const response = await registration(credentials);
         console.log('Registration Successful:', response); 
       } catch (error) {
         console.error('Registration Failed:', error); 
@@ -20,8 +20,8 @@ const Registration: React.FC<RegistrationProps> = ({loading, error, registration
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
           placeholder="Username"
           required
         />

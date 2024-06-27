@@ -1,10 +1,11 @@
 import useAuth from "../../hooks/useAuth"
 import useAxios from "../../hooks/useAxios"
 import Login from "../login/login"
-const Profile = () => {
+import { ProfileProps } from "./profileTypes"
+const Profile = ({logout}: ProfileProps) => {
     return (
         <>
-            
+            <button onClick={logout}>logout</button>
         </>
     )
 }

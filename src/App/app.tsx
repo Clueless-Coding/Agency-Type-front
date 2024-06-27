@@ -7,44 +7,40 @@ import useAxios from "../hooks/useAxios"
 import Login from "../components/profile"
 import Registration from "../components/register/registration"
 import useRoutes from "../hooks/useRoutes"
+import { BASE_URL } from "../resourses/constants"
 const App: React.FC = () => {
     const {loading, error, registrationCall, loginCall,} = useAxios()
-    const {user, setUser, login, logout} = useAuth()
+    const { setUser, auth, logout, getUser} = useAuth()
     const {handleLogin} = useRoutes()
+    const user = getUser()
+    console.log(user)
+    const CreateAccount = () => {
+        return (
+            <>
+            <Login
+                    auth={auth}
+                    error={error}
+                    loading={loading}
+                    loginCall={loginCall} 
+                    logout={logout}
+            />
+            <Registration
+                        error={error}
+                        loading={loading}
+                        registration={registrationCall}
+            />
+            </>
+        )
+    } 
     return (
         <>
         <Nav/>
         <Routes>
             <Route path="/" element={<Navigate to="/test"/>}/>
             <Route path="/test" element={<Content/>}/>
-            {user ? (
-                <>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Navigate to={"/profile"} replace/>
-                </>
-            ) : 
-            (
-                <>
-                    <Route path="/login"
-                        element={
-                        <Login
-                            auth={login}
-                            error={error}
-                            loading={loading}
-                            login={loginCall} 
-                        />}
-                    />
-                    <Route path="/registration"
-                        element={
-                        <Registration
-                        error={error}
-                        loading={loading}
-                        registration={registrationCall}
-                        />}
-                    />
-                </>
-            )}
-        </Routes>
+            <Route path="/profile" element={user ? <Profile logout={logout}/> : <CreateAccount/>}/>
+
+            </Routes>
         </>
     )
 }
