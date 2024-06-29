@@ -13,7 +13,6 @@ const App: React.FC = () => {
     const { setUser, auth, logout, getUser} = useAuth()
     const {handleLogin} = useRoutes()
     const user = getUser()
-    console.log(user)
     const CreateAccount = () => {
         return (
             <>

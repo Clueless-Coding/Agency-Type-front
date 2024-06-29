@@ -4,7 +4,7 @@ const ModalComponent = ({children, isOpen, type, closeModal}: ModalProps) =>{
     return (
     <>
         <Modal isOpen={isOpen}>
-            <div>{children}</div>  
+            <div className='modal-content'>{children}</div>  
             <button onClick={() => closeModal(type)}>close</button>  
         </Modal>
     </>

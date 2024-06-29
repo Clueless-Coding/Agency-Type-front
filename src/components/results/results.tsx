@@ -6,6 +6,10 @@ const ResultCard = ({results}: ResultCardProps) => {
             {results.cpm}
             <br />
             {results.wpm}
+            <br />
+            {results.accuracy}
+            <br />
+            {results.error}
         </>
     )
 }

@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
-import { ErrorType, ApiResponse, LoginCredentials, User, Results, RegistraTionCredentials } from "../resourses/types";
+import { ErrorType, ApiResponse, LoginCredentials, User, Results, RegistraTionCredentials } from "../resourses/types"
 import { BASE_URL } from "../resourses/constants";
 import { Navigate } from "react-router-dom";
 import useAuth from "./useAuth";
@@ -34,6 +34,7 @@ const useAxios = () => {
             const response = await axiosInstance.post<ApiResponse>(`${BASE_URL}login`, credentials)
             setLoading(false)
             console.log(response)
+            //auth(response.data)
             return response.data
         } catch (error: any){
             handleError(error as AxiosError<any>)

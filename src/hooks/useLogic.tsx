@@ -3,12 +3,11 @@ import useWord from "./useWord";
 import useKeyDown from "./useKeydown"
 import useTimer from "./useTimer";
 import { useModal } from "./useModal";
-import { accuracy, calculateWPM } from "../utils";
+import { calculateAccuracy, calculateWPM } from "../utils";
 import { Results } from "../resourses/types";
 import useAxios from "./useAxios";
 import useAuth from "./useAuth";
 const useLogic = () => {
-    
     const [wordFocused, setWordFocused] = useState<boolean>(false)
     const [time, setTime] = useState(10000)
     const {timer, resetTimer, startTimer} = useTimer(time)
@@ -29,6 +28,8 @@ const useLogic = () => {
         resetCursorPosition,
         setTypingState,
         resetCharTyped,
+        totalCharTyped,
+        setTotalChartyped
     } = useKeyDown(wordFocused)
     const {
         word,
@@ -43,12 +44,15 @@ const useLogic = () => {
         setCharTyped('');
         setTypingState('idle');
         updateWord(true);
+        setTotalChartyped('')
     }, [
         resetTimer,
         resetCharTyped,
         resetCursorPosition,
+        setCharTyped,
         setTypingState,
-        updateWord
+        updateWord,
+        setTotalChartyped,
     ])
     const {
         modalIsOpen,
@@ -66,12 +70,13 @@ const useLogic = () => {
     }
     if(timer === 0){
         console.log("пошел нахуй")
-        const {wpm, cpm} = calculateWPM(totalWord, charTyped.length)
+        const acc = calculateAccuracy(word, totalCharTyped)
+        const {wpm, cpm} = calculateWPM(charTyped, time, acc.accuracy)
         setResults({
-            accuracy: 0,
+            accuracy: acc.accuracy,
             wpm,
             cpm,
-            error: 0,
+            error: acc.incorrectChars,
             history: 0,
         })
         openModal('results');
@@ -83,7 +88,9 @@ const useLogic = () => {
             return true;
         } else if(charTyped[i] === undefined){
             return true;  
-        } return false
+        } else {
+            return false;
+        }
             
     }, [charTyped, word])
     return {

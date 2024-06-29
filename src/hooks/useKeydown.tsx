@@ -5,6 +5,7 @@ type TypingState = 'idle' | 'start' | 'typing'
 const useKeyDown = (active: boolean) => {
     const [typingState, setTypingState] = useState<TypingState>('idle')
     const [charTyped, setCharTyped] = useState<string>('') 
+    const [totalCharTyped, setTotalChartyped] = useState<string>('')
     const {cursorPosition, updateCursorPosition, resetCursorPosition} = useCursor();
     const handleKeyDown = useCallback(
         ({key, code}: KeyboardEvent) => {
@@ -22,6 +23,7 @@ const useKeyDown = (active: boolean) => {
               }
               if(key.length === 1){
                 setCharTyped((prev) => prev + key);
+                setTotalChartyped((prev)=> prev + key)
                 updateCursorPosition('increase');
               } 
             },
@@ -43,6 +45,8 @@ const useKeyDown = (active: boolean) => {
     resetCharTyped,
     resetCursorPosition,
     setCharTyped,
+    totalCharTyped,
+    setTotalChartyped
     }
 }
 export default useKeyDown

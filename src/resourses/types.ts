@@ -25,3 +25,8 @@ export type Results= {
     error: number,
     history: number;
 }
+export interface AccuracyMetrics {
+    correctChars: number;
+    incorrectChars: number;
+    accuracy: number;
+  }
