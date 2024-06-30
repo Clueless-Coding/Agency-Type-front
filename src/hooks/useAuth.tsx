@@ -4,20 +4,22 @@ import { Navigate } from "react-router-dom"
 import Nav from "../components/nav"
 
 const useAuth = () => {
-    const [user, setUser] = useState<User | null>()
-    const auth = (userData: User) =>{
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData))
+    const [token, setToken] = useState<string | null>()
+    const auth = (token: string) =>{
+        console.log(token)
+        setToken(token);
+        console.log(token)
+        localStorage.setItem('token', token)
     }
     const logout = () => {
-        setUser(null)
+        setToken(null)
         localStorage.removeItem('user')
     }
     const getUser = () => {
-        return localStorage.getItem('user')
+        return localStorage.getItem('token')
     }
     return {
-        user, setUser, auth, logout, getUser
+        token, setToken, auth, logout, getUser
     }
 }
 export default useAuth

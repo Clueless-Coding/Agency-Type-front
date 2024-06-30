@@ -9,10 +9,11 @@ import Registration from "../components/register/registration"
 import useRoutes from "../hooks/useRoutes"
 import { BASE_URL } from "../resourses/constants"
 const App: React.FC = () => {
-    const {loading, error, registrationCall, loginCall,} = useAxios()
-    const { setUser, auth, logout, getUser} = useAuth()
+    const {loading, error, registrationCall, loginCall, getResults} = useAxios()
+    const { setToken, auth, logout, getUser} = useAuth()
     const {handleLogin} = useRoutes()
-    const user = getUser()
+    const token = getUser()
+    console.log(token)
     const CreateAccount = () => {
         return (
             <>
@@ -37,9 +38,8 @@ const App: React.FC = () => {
         <Routes>
             <Route path="/" element={<Navigate to="/test"/>}/>
             <Route path="/test" element={<Content/>}/>
-            <Route path="/profile" element={user ? <Profile logout={logout}/> : <CreateAccount/>}/>
-
-            </Routes>
+            <Route path="/profile" element={token ? <Profile getResults={getResults} logout={logout}/> : <CreateAccount/>}/>
+        </Routes>
         </>
     )
 }

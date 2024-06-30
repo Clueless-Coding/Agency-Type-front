@@ -1,15 +1,31 @@
-.cursor {
+
+.user-typed-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh; 
+    width: 50vw;
+    font-size: 1.2rem; 
+    font-family: 'Arial', sans-serif; 
+    flex-wrap: wrap; 
+  }
+  
+  .character {
+    margin-right: 4px;
+    color: black; 
+  }
+  
+  .character.correct {
     color: white; 
-    transition: transform 0.1s ease-in-out; 
-}
-.character{
-    width: 30px;
-    margin: 3px;
-}
-.user-typed-container{
-    width: 600px;
-    height: 300px;
-}
+  }
+  
+  .character.incorrect {
+    color: red; 
+  }
+  
+  .cursor {
+    color: #007bff; 
+  }
 .holder{
     width: 30px;
     display: inline;

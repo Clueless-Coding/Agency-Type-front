@@ -1,21 +1,17 @@
 import { useState } from "react"
 import { LoginProps } from "./loginTypes"
-import useAuth from "../../hooks/useAuth"
 import { Navigate } from "react-router-dom"
 import { LoginCredentials } from "../../resourses/types"
-const Login: React.FC<LoginProps> = ({loading, error, loginCall, logout}: LoginProps) => {
+const Login: React.FC<LoginProps> = ({loading, error, loginCall, logout, auth}: LoginProps) => {
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const {auth} = useAuth()
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         try{
             const credentials: LoginCredentials = {login, password}
             const response = await loginCall(credentials)
-            //auth(response)
-            console.log(response.data)
+            auth(response.token)
             console.log('Login succesful:', response)
-            //auth(response.data)
         } catch (error) {
             console.error('Login failed:', error)
         }

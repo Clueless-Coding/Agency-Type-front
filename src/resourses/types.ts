@@ -27,6 +27,6 @@ export type Results= {
 }
 export interface AccuracyMetrics {
     correctChars: number;
-    incorrectChars: number;
+    errors: number;
     accuracy: number;
   }

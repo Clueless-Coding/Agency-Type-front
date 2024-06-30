@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import useWord from "./useWord";
 import useKeyDown from "./useKeydown"
 import useTimer from "./useTimer";
@@ -12,7 +12,8 @@ const useLogic = () => {
     const [time, setTime] = useState(10000)
     const {timer, resetTimer, startTimer} = useTimer(time)
     const {submitTest, loginCall} = useAxios()
-    const {user} = useAuth()
+    const {getUser} = useAuth()
+    const token = getUser()
     const [results, setResults] = useState<Results>({
         accuracy: 0,
         wpm: 0,
@@ -64,23 +65,24 @@ const useLogic = () => {
         resetCharTyped();
         resetCursorPosition();
     }
-    if(typingState === 'start'){
+    if(typingState === 'start' && wordFocused === true){
         setTypingState('typing')
         startTimer()
     }
     if(timer === 0){
-        console.log("пошел нахуй")
-        const acc = calculateAccuracy(word, totalCharTyped)
+        const acc = calculateAccuracy(word, charTyped, totalCharTyped)
+        console.log(acc)
         const {wpm, cpm} = calculateWPM(charTyped, time, acc.accuracy)
         setResults({
             accuracy: acc.accuracy,
             wpm,
             cpm,
-            error: acc.incorrectChars,
+            error: acc.errors,
             history: 0,
         })
         openModal('results');
-        user && submitTest(user, results)
+        setWordFocused(false)
+        token && submitTest(token, results)   
         restartTest();
     }   
     const checkCharacter = useCallback((i: number) => {

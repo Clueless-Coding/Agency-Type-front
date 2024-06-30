@@ -2,7 +2,9 @@ import { useEffect } from "react"
 import { TimerProps } from "./timerTypes"
 
 const Timer = ({timer, reset}: TimerProps) => {
-    useEffect(()=> {reset()}, [reset])
+    useEffect(() => {
+        reset();
+      }, [reset]);
     const formatedTimer = {
         minutes: new Date(timer).getUTCMinutes(),
         seconds: new Date(timer).getUTCSeconds(),

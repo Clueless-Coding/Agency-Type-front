@@ -5,5 +5,5 @@ export interface LoginProps{
     
     loginCall:  (credentials: LoginCredentials) => Promise<ApiResponse>,
     logout:  () => void,
-    auth: (userData: User) => void,
+    auth: (token: string) => void,
 }
