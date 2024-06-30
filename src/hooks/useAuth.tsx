@@ -1,25 +1,31 @@
-import { useState } from "react"
-import { User } from "../resourses/types"
-import { Navigate } from "react-router-dom"
-import Nav from "../components/nav"
+import { useState } from "react";
 
 const useAuth = () => {
-    const [token, setToken] = useState<string | null>()
-    const auth = (token: string) =>{
-        console.log(token)
+    const [token, setToken] = useState<string | null>(localStorage.getItem('token') || null);
+    const [id, setId] = useState<number>(localStorage.getItem('id') ? parseInt(localStorage.getItem('id')!) : 0);
+
+    const auth = (token: string, user_id: number) => {
         setToken(token);
-        console.log(token)
-        localStorage.setItem('token', token)
+        setId(user_id);
+        localStorage.setItem('token', token);
+        localStorage.setItem('id', user_id.toString());
+        console.log('Token stored:', token);
     }
+
     const logout = () => {
-        setToken(null)
-        localStorage.removeItem('user')
+        setToken(null);
+        setId(0);
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
     }
-    const getUser = () => {
-        return localStorage.getItem('token')
-    }
+
     return {
-        token, setToken, auth, logout, getUser
+        setToken,
+        token,
+        auth,
+        logout,
+        id
     }
 }
-export default useAuth
+
+export default useAuth;

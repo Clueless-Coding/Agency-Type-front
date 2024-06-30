@@ -9,5 +9,4 @@ export interface ModalProps{
 }
 export interface ModalContentProps{
     results: ResultsProps;
-    history: ''
 }

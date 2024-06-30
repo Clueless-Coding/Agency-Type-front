@@ -1,12 +1,11 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
-import { ErrorType, ApiResponse, LoginCredentials, User, Results, RegistraTionCredentials } from "../resourses/types"
+import { ErrorType, ApiResponse, LoginCredentials, User, Results, RegistraTionCredentials, ResultsResponse } from "../resourses/types"
 import { BASE_URL } from "../resourses/constants";
 import { Navigate } from "react-router-dom";
 import useAuth from "./useAuth";
 const useAxios = () => {
     const [error, setError] = useState<ErrorType | null>(null);
-
     const [loading, setLoading] = useState(false)
     const {auth} = useAuth()
     const axiosInstance = axios.create({
@@ -42,6 +41,7 @@ const useAxios = () => {
         }
       }
       const submitTest = async (token:string, results: Results): Promise<ApiResponse> => {
+        console.log(results)
         try{
             console.log("sent results")
             const response = await axiosInstance.post<ApiResponse>(`${BASE_URL}results`, results, {headers: {token}} )
@@ -52,11 +52,12 @@ const useAxios = () => {
             throw error
         }  
       }
-      const getResults = async (id: number): Promise<ApiResponse> => {
+      const getResults = async (user_id: number): Promise<ResultsResponse> => {
         try {
-            const response = await axiosInstance.get<ApiResponse>(`${BASE_URL}results/${id}`)
-            console.log(response)
-            return response.data
+            const response = await axiosInstance.get<ResultsResponse>(`${BASE_URL}results` ,{params: {
+                user_id
+            }})
+            return response
         } catch(eroror: any) {
             handleError(error as AxiosError<any>)
             throw error

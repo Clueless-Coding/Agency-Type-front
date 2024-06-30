@@ -6,14 +6,14 @@ const Login: React.FC<LoginProps> = ({loading, error, loginCall, logout, auth}: 
     const [login, setLogin] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        try{
-            const credentials: LoginCredentials = {login, password}
-            const response = await loginCall(credentials)
-            auth(response.token)
-            console.log('Login succesful:', response)
+        e.preventDefault();
+        try {
+            const credentials: LoginCredentials = { login, password };
+            const response = await loginCall(credentials);
+            auth(response.token, response.user_id); 
+            console.log('Login successful:', response);
         } catch (error) {
-            console.error('Login failed:', error)
+            console.error('Login failed:', error);
         }
     }
     return(

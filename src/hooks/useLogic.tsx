@@ -12,15 +12,14 @@ const useLogic = () => {
     const [time, setTime] = useState(10000)
     const {timer, resetTimer, startTimer} = useTimer(time)
     const {submitTest, loginCall} = useAxios()
-    const {getUser} = useAuth()
-    const token = getUser()
+    const {token, id} = useAuth()
     const [results, setResults] = useState<Results>({
         accuracy: 0,
         wpm: 0,
         cpm: 0,
-        error: 0,
-        history: 0,
-    })
+        mistakes: 0,
+        count_words: 0,
+    });
     const {
         charTyped,
         setCharTyped,
@@ -69,22 +68,33 @@ const useLogic = () => {
         setTypingState('typing')
         startTimer()
     }
-    if(timer === 0){
-        const acc = calculateAccuracy(word, charTyped, totalCharTyped)
-        console.log(acc)
-        const {wpm, cpm} = calculateWPM(charTyped, time, acc.accuracy)
-        setResults({
-            accuracy: acc.accuracy,
-            wpm,
-            cpm,
-            error: acc.errors,
-            history: 0,
-        })
-        openModal('results');
-        setWordFocused(false)
-        token && submitTest(token, results)   
-        restartTest();
-    }   
+    useEffect(() => {
+        if (timer === 0) {
+            const acc = calculateAccuracy(word, charTyped, totalCharTyped);
+            const { wpm, cpm } = calculateWPM(charTyped, time, acc.accuracy);
+    
+            const newResults = {
+                accuracy: acc.accuracy,
+                wpm: wpm,
+                cpm: cpm,
+                mistakes: acc.errors,
+                count_words: charTyped.length,
+            };
+    
+            setResults(newResults);
+    
+            console.log(newResults);
+    
+            openModal('results');
+    
+            if (token) {
+                submitTest(token, newResults);
+            }
+    
+            restartTest();
+        }
+    }, [timer, word, charTyped, totalCharTyped, time, token, submitTest, openModal, restartTest]);
+    
     const checkCharacter = useCallback((i: number) => {
         if(charTyped[i] === word[i]){
             return true;
@@ -95,6 +105,7 @@ const useLogic = () => {
         }
             
     }, [charTyped, word])
+    console.log(results)
     return {
         timer,
         resetTimer,

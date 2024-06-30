@@ -33,7 +33,7 @@ const Content = () => {
                     cursorPosition={cursorPosition}
                 />
                 <ModalComponent type='results' isOpen={modalIsOpen} closeModal={closeModal} >
-                    <ModalContent results={results} history=""  />
+                    <ModalContent results={results}   />
                 </ModalComponent>
                 <button onClick={() => restartTest()}>Restart</button>
             </div>
