@@ -80,17 +80,12 @@ const useLogic = () => {
                 mistakes: acc.errors,
                 count_words: charTyped.length,
             };
-    
             setResults(newResults);
-    
-            console.log(newResults);
-    
             openModal('results');
-    
             if (token) {
                 submitTest(token, newResults);
             }
-    
+            setWordFocused(false)
             restartTest();
         }
     }, [timer, word, charTyped, totalCharTyped, time, token, submitTest, openModal, restartTest]);
@@ -105,7 +100,6 @@ const useLogic = () => {
         }
             
     }, [charTyped, word])
-    console.log(results)
     return {
         timer,
         resetTimer,

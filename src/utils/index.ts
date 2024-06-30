@@ -35,7 +35,6 @@ export const calculateAccuracy = (expectedWord: string, typedWord: string, total
     const wordsTyped = typedText.split(/\s+/).length; 
     const rawWPM = wordsTyped / minutes;
     const netWpm = Math.round(rawWPM * (accuracy / 100));
-  
     const results = {
       wpm: netWpm,
       cpm: (typedText.length / minutes) * (accuracy / 100),

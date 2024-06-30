@@ -9,7 +9,6 @@ const useAuth = () => {
         setId(user_id);
         localStorage.setItem('token', token);
         localStorage.setItem('id', user_id.toString());
-        console.log('Token stored:', token);
     }
 
     const logout = () => {

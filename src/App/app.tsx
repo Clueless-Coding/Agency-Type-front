@@ -11,8 +11,6 @@ import { BASE_URL } from "../resourses/constants"
 const App: React.FC = () => {
     const {loading, error, registrationCall, loginCall, getResults} = useAxios()
     const { setToken, auth, logout, id, token} = useAuth()
-    const {handleLogin} = useRoutes()
-    console.log(token)
     const CreateAccount = () => {
         return (
             <>
