@@ -1,12 +1,10 @@
 export type ApiResponse = {
-    data: any,
     message: string,
     token: string,
     user_id: number,
 }
 export type ResultsResponse = {
     data: any,
-
 }
 export type ErrorType = {
     message: string,
@@ -15,7 +13,7 @@ export type LoginCredentials = {
     login: string,
     password: string,
 }
-export type RegistraTionCredentials = {
+export type RegistrationCredentials = {
     login: string,
     password: string,
 }

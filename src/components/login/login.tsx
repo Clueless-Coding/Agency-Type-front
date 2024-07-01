@@ -1,10 +1,11 @@
-import { useState } from "react"
-import { LoginProps } from "./loginTypes"
-import { Navigate } from "react-router-dom"
-import { LoginCredentials } from "../../resourses/types"
-const Login: React.FC<LoginProps> = ({loading, error, loginCall, logout, auth}: LoginProps) => {
-    const [login, setLogin] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
+import React, { useState } from "react";
+import { LoginProps } from "./loginTypes";
+import { LoginCredentials } from "../../resourses/types";
+
+const Login: React.FC<LoginProps> = ({ loading, error, loginCall, logout, auth }: LoginProps) => {
+    const [login, setLogin] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
@@ -16,30 +17,33 @@ const Login: React.FC<LoginProps> = ({loading, error, loginCall, logout, auth}: 
             console.error('Login failed:', error);
         }
     }
-    return(
-        <>
-        <form onSubmit={handleSubmit}>
-            <input
-                type="username"
-                value={login}
-                onChange={(input) => setLogin(input.target.value)}
-                placeholder='username'
-                required
-            />
-            <input
-                type="password"
-                value={password}
-                onChange={(input) => setPassword(input.target.value)}
-                placeholder='password'
-                required
-            />
-            <button type="submit" disabled={loading} >
-            Login
-            </button>   
-        </form>
-        <button onClick={() => logout()}>logout</button>
-        {error && <p>{error.message}</p>}
-        </>
-    )
+
+    return (
+        <div className="form-container">
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={login}
+                    onChange={(e) => setLogin(e.target.value)}
+                    className="form-input"
+                    placeholder="Username"
+                    required
+                />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="form-input"
+                    placeholder="Password"
+                    required
+                />
+                <button type="submit" className="form-button" disabled={loading}>
+                    Login
+                </button>
+            </form>
+            {error && <p>{error.message}</p>}
+        </div>
+    );
 }
-export default Login
+
+export default Login;

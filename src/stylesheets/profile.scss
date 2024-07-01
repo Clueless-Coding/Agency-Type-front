@@ -1,0 +1,41 @@
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black;
+}
+
+.logout-button {
+    background-color: #f44336;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
+}
+
+.history-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.history-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.history-item p {
+    margin: 5px 0;
+}

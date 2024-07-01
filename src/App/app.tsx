@@ -1,17 +1,15 @@
 import Nav from "../components/nav"
 import Content from "../components/content"
 import Profile from "../components/profile/profile"
-import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom"
+import { Route, Routes, Navigate} from "react-router-dom"
 import useAuth from "../hooks/useAuth"
 import useAxios from "../hooks/useAxios"
 import Login from "../components/profile"
 import Registration from "../components/register/registration"
-import useRoutes from "../hooks/useRoutes"
-import { BASE_URL } from "../resourses/constants"
 const App: React.FC = () => {
     const {loading, error, registrationCall, loginCall, getResults} = useAxios()
-    const { setToken, auth, logout, id, token} = useAuth()
-    const CreateAccount = () => {
+    const { auth, logout, id, token} = useAuth()
+    const CreateAccount = () => {    
         return (
             <>
             <Login

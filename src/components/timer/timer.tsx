@@ -20,4 +20,3 @@ const Timer = ({timer, reset}: TimerProps) => {
     )
 }
 export default Timer
-//{*formatedTimer.minutes < 10 ? `0${formatedTimer.minutes}`: formatedTimer.minutes*/}

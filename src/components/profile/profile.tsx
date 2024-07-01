@@ -19,22 +19,24 @@ const Profile: React.FC<ProfileProps> = ({ logout, getResults, user_id }: Profil
     }, [getResults, user_id]);
 
     return (
-        <>
-            <button onClick={logout}>Logout</button>
+        <div className="profile-container">
+            <button className="logout-button" onClick={logout}>Logout</button>
             <div>
                 <h2>History:</h2>
-                <ul>
-                    {history.map((item, index) => (
-                        <li key={index}>
+                <ul className="history-list">
+                    {history && history.map((item, index) => (
+                        <li key={index} className="history-item">
                             <p>Mistakes: {item.mistakes}</p>
                             <p>Accuracy: {item.accuracy}</p>
                             <p>WPM: {item.wpm}</p>
+                            <p>Duration: {item.duration}</p>
+                            <p>Game Mode: {item.game_mode}</p>
                         </li>
                     ))}
                 </ul>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default Profile;

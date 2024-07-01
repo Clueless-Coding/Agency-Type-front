@@ -74,11 +74,13 @@ const useLogic = () => {
             const { wpm, cpm } = calculateWPM(charTyped, time, acc.accuracy);
     
             const newResults = {
+                game_mode: "classic",
                 accuracy: acc.accuracy,
                 wpm: wpm,
                 cpm: cpm,
                 mistakes: acc.errors,
                 count_words: charTyped.length,
+                duration: time/1000,
             };
             setResults(newResults);
             openModal('results');

@@ -1,6 +1,45 @@
-.nav{
-    width: 100vw;
-    height: 60px;
+.navbar {
     background-color: black;
-    display: block;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.brand {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.nav-link {
+    color: #fff !important;
+    text-decoration: none !important;
+    padding: 10px;
+}
+.nav-item {
+    margin-left: 15px;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav-link:hover {
+    background-color: #555;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.nav-link:visited{
+    text-decoration: none;
 }
