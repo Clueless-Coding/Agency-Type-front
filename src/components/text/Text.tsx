@@ -1,22 +1,38 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { TextProps } from './TextTypes';
 import Character from '../character/character';
 
+const Text: React.FC<TextProps> = ({ text, check, cursorPosition }: TextProps) => {
+    const words: string[] = useMemo(() => text.split(/\s+/), [text]);
+    const characters: string[] = useMemo(() => text.split(''), [text]);
+    const renderCharacters = (): JSX.Element[] => {
+        const renderedElements: JSX.Element[] = [];
+        let characterIndex = 0;
+        words.forEach((word, wordIndex) => {
+          word = word + ' '
+            renderedElements.push(
+                <div key={wordIndex} className="word-container">
+                    {word.split('').map((letter, index) => {
+                        const charIndex = characterIndex;
+                        characterIndex++;
+                        return (
+                            <React.Fragment key={charIndex}>
+                                <Character state={check(charIndex)} character={letter} cursor={cursorPosition === charIndex ? true : false}/>
+                            </React.Fragment>
+                        );
+                    })}
+                </div>
+            );
+        });
 
-const Text = ({ text, check, cursorPosition }: TextProps) => {
-  const characters = useMemo(() => text.split(''), [text]);
+        return renderedElements;
+    };
 
-  return (
-    <div className="user-typed-container">
-      {characters.map((letter, i) => (
-        <span key={i}>
-          <Character state={check(i)} character={letter} />
-          {i + 1 === cursorPosition && <span className="cursor">|</span>}
-          {/\s/.test(letter) && <wbr />} {}
-        </span>
-      ))}
-    </div>
-  );
+    return (
+        <div className="user-typed-container">
+            {renderCharacters()}
+        </div>
+    );
 };
 
 export default Text;

@@ -33,7 +33,6 @@ const useAxios = () => {
         try {
             const response = await axiosInstance.post<ApiResponse>(`${BASE_URL}login`, credentials)
             setLoading(false)
-            console.log(response)
             return response.data
         } catch (error: any){
             handleError(error as AxiosError<any>)
@@ -41,11 +40,9 @@ const useAxios = () => {
         }
       }
       const submitTest = async (token:string, results: Results): Promise<ApiResponse> => {
-        console.log(results)
         try{
             console.log("sent results")
             const response = await axiosInstance.post<ApiResponse>(`${BASE_URL}results`, results, {headers: {token}} )
-            console.log(response)
             return response.data
         } catch(error: any) {
             handleError(error as AxiosError<any>)

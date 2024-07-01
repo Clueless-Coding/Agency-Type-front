@@ -35,8 +35,9 @@ const Content = () => {
                 <ModalComponent type='results' isOpen={modalIsOpen} closeModal={closeModal} >
                     <ModalContent results={results}   />
                 </ModalComponent>
-                <button onClick={() => restartTest()}>Restart</button>
+    
             </div>
+            <button onClick={() => restartTest()}>Restart</button>
         </>
     )
 }

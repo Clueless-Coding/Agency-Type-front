@@ -13,6 +13,7 @@
   .character {
     margin-right: 4px;
     color: black; 
+    border-left: solid 2px #404040,
   }
   
   .character.correct {
@@ -29,4 +30,7 @@
 .holder{
     width: 30px;
     display: inline;
+}
+.word-container{
+  margin: 10px;
 }
