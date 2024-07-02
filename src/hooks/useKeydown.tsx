@@ -21,7 +21,6 @@ const useKeyDown = (active: boolean) => {
                 setTypingState('start');
               }
               if(key.length === 1){
-                console.log(key)
                 setCharTyped((prev) => prev + key);
                 setTotalChartyped((prev)=> prev + key)
                 updateCursorPosition('increase');

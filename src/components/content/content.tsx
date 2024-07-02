@@ -13,12 +13,11 @@ const Content = () => {
         timer,
         resetTimer,
         modalIsOpen,
-        openModal,
         closeModal,
         results,
         setWordFocused,
         wordFocused,
-        setTypingState,
+        setTime,
     } = useLogic();
 
     const handleContentClick = () => {
@@ -28,19 +27,37 @@ const Content = () => {
     };
 
     return (
-        <div className="content" onClick={handleContentClick}>
-            {!wordFocused && (
-                <div className="overlay">
-                    <p>Click to start typing</p>
+        <div className="content-container">
+            <div className="content" onClick={handleContentClick}>
+                {!wordFocused && (
+                    <div className="overlay">
+                        <p>Click to start typing</p>
+                    </div>
+                )}
+                <div className='timer-settings-container'>
+                    <button onClick={() => {
+                        setTime(15000)
+                        restartTest()}
+                        }>15</button>
+                    <button onClick={() => {
+                        setTime(30000)
+                        restartTest}
+                        }>30</button>
+                    <button onClick={() => {
+                        setTime(60000)
+                        restartTest()}
+                        }>60</button>
                 </div>
-            )}
-            <Timer timer={timer} reset={resetTimer} />
-            <Text text={word} check={checkCharacter} cursorPosition={cursorPosition} />
-            <ModalComponent type='results' isOpen={modalIsOpen} closeModal={closeModal}>
-                <ModalContent results={results} />
-            </ModalComponent>
-            <button className="restart-button" onClick={() => restartTest()}>Restart</button>
-        </div>  
+                <div className="timer-container">
+                    <Timer timer={timer} reset={resetTimer} />
+                </div>
+                <Text text={word} check={checkCharacter} cursorPosition={cursorPosition} />
+                <ModalComponent type='results' isOpen={modalIsOpen} closeModal={closeModal}>
+                    <ModalContent results={results} />
+                </ModalComponent>
+                <button className="restart-button" onClick={() => restartTest()}>Restart</button>
+            </div>
+        </div>
     );
 };
 

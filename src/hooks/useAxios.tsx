@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { useState } from "react";
-import { ErrorType, ApiResponse, LoginCredentials, Results, RegistraTionCredentials, ResultsResponse } from "../resourses/types"
+import { ErrorType, ApiResponse, LoginCredentials, Results, RegistrationCredentials, ResultsResponse } from "../resourses/types"
 import { BASE_URL } from "../resourses/constants";
 const useAxios = () => {
     const [error, setError] = useState<ErrorType | null>(null);
@@ -14,7 +14,7 @@ const useAxios = () => {
         setError({ message: errorMessage });
         setLoading(false);
       };
-    const registrationCall = async (credentials: RegistraTionCredentials): Promise<ApiResponse> => {
+    const registrationCall = async (credentials: RegistrationCredentials): Promise<ApiResponse> => {
         setLoading(true);
         try {
           const response = await axiosInstance.post<ApiResponse>(`${BASE_URL}register`, credentials);

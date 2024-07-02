@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth"
 import useAxios from "../hooks/useAxios"
 import Login from "../components/profile"
 import Registration from "../components/register/registration"
+import Footer from "../components/footer/footer"
 const App: React.FC = () => {
     const {loading, error, registrationCall, loginCall, getResults} = useAxios()
     const { auth, logout, id, token} = useAuth()
@@ -35,6 +36,7 @@ const App: React.FC = () => {
             <Route path="/test" element={<Content/>}/>
             <Route path="/profile" element={token ? <Profile getResults={getResults} logout={logout} user_id={id}/> : <CreateAccount/>}/>
         </Routes>
+        <Footer/>
         </>
     )
 }

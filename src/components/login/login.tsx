@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LoginProps } from "./loginTypes";
 import { LoginCredentials } from "../../resourses/types";
 
-const Login: React.FC<LoginProps> = ({ loading, error, loginCall, logout, auth }: LoginProps) => {
+const Login: React.FC<LoginProps> = ({ loading, error, loginCall, auth }: LoginProps) => {
     const [login, setLogin] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 

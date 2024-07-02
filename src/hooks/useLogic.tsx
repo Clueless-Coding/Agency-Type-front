@@ -119,7 +119,8 @@ const useLogic = () => {
         setTypingState,
         typingState,
         submitTest,
-        loginCall
+        loginCall,
+        setTime,
     }
 }
 export default useLogic

@@ -14,6 +14,8 @@ const Timer = ({timer, reset}: TimerProps) => {
             <div>
             </div>
             <span>
+                {formatedTimer.minutes < 10 ? `0${formatedTimer.minutes}`: formatedTimer.minutes}
+                :
                 {formatedTimer.seconds < 10 ? `0${formatedTimer.seconds}`: formatedTimer.seconds}
             </span>
         </>

@@ -3,6 +3,7 @@
 @import "./results.scss";
 @import "./profile.scss";
 @import "./form.scss";
+@import "./footer.scss";
 *{
     margin: 0;
     padding: 0;
@@ -13,25 +14,31 @@
     color: #efeee8;
     margin: 0;
     padding: 0;
-    height:100%;
     /*font-family: 'Roboto', sans-serif;*/
     padding-bottom:400px;
     /*color: #7A7C80;*/
     background: #404040;
     text-decoration: none;
+    max-height: 100vh;
 }
 .modal-content{
   background-color: black;
   color: white;
 }
-.content {
-  top: 40%;
-  position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+.content-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh; 
 }
 
+.content {
+  max-width: 800px;
+  padding: 20px;
+  text-align: center; 
+  max-height: 600px;
+  min-height: 600px;
+}
 .restart-button {
   margin-top: 20px;
   padding: 10px 20px;

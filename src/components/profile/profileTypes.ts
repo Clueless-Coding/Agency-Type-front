@@ -1,4 +1,4 @@
-import { ApiResponse, ResultsResponse } from "../../resourses/types";
+import { ResultsResponse } from "../../resourses/types";
 
 export interface ProfileProps {
     logout: () => void, 

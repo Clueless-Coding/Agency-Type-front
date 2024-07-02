@@ -62,3 +62,27 @@
 .restart-button:hover {
   background-color: #101010;
 }
+.timer-settings-container {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  margin-bottom: 20px;
+}
+
+.timer-settings-container button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.timer-settings-container button:hover {
+  background-color: #0D47A1;
+}
+
+.timer-container {
+  margin-bottom: 20px;
+}
